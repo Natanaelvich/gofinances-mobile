@@ -5,6 +5,7 @@
     "name": "gofinances",
     "slug": "gofinances",
     "version": "1.0.0",
+    "sdkVersion" : "41.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
