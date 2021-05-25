@@ -1,13 +1,10 @@
-<h1 align='center'> GOFINANCES </h1>
-
-### Control your form finance very simple ⚡
-
-## ScreenShots
-
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/52014318/119503216-194e0700-bd41-11eb-8249-df65a5c0150f.png' width='240' />
+  <img src='https://user-images.githubusercontent.com/52014318/119578859-b20d7280-bd93-11eb-8e44-c505cab720a4.png' width='140' />
+  <h1 align='center'> GOFINANCES </h1>
 </p>
 
+
+### Control your form finance very simple ⚡
 
 ## Install
 
@@ -18,6 +15,13 @@
 ## Start & watch
 
     $ npm start
+
+## ScreenShots
+
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/52014318/119503216-194e0700-bd41-11eb-8249-df65a5c0150f.png' width='240' />
+</p>
+
 
 ## Languages & tools
 
