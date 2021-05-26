@@ -1,8 +1,8 @@
 import React from 'react';
-import { Dashboard } from './src/screens/Dashboard';
+import Main from './src';
 
 const App: React.FC = () => {
-  return <Dashboard />;
+  return <Main />;
 };
 
 export default App;
