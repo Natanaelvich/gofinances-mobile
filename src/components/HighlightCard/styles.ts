@@ -3,13 +3,16 @@ import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
-  flex: 1;
-`;
-export const Header = styled.View`
-  height: ${RFValue(200)}px;
+  background-color: ${({ theme }) => theme.colors.shape};
   width: ${RFValue(300)}px;
   border-radius: ${RFValue(5)}px;
-  background-color: ${({ theme }) => theme.colors.shape};
+  padding: 19px 23px;
+  padding-bottom: ${RFValue(42)}px;
+`;
+export const Header = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
@@ -23,10 +26,11 @@ export const Icon = styled(Feather)`
 `;
 export const Footer = styled.View``;
 export const Amount = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.regular};
+  font-family: ${({ theme }) => theme.fonts.medium};
   font-size: ${RFValue(32)}px;
   color: ${({ theme }) => theme.colors.title};
   line-height: ${RFValue(48)}px;
+  margin-top: 38px;
 `;
 export const LastTransaction = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
