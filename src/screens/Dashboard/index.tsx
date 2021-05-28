@@ -23,7 +23,7 @@ export function Dashboard() {
           <UserInfo>
             <Photo
               source={{
-                uri: 'https://avatars.githubusercontent.com/u/46244572?v=4',
+                uri: 'https://github.com/Natanaelvich.png',
               }}
             />
             <User>
