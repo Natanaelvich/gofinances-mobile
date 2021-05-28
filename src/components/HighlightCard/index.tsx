@@ -2,16 +2,28 @@ import React from 'react';
 import { Container } from './styles';
 import { Header, Title, Icon, Footer, Amount, LastTransaction } from './styles';
 
-export function HighlightCard() {
+interface HighlightCardProps {
+  type: 'income' | 'outcome';
+  icon: string;
+  amount: number;
+  lastTransaction: string;
+}
+
+export function HighlightCard({
+  type,
+  icon,
+  amount,
+  lastTransaction,
+}: HighlightCardProps) {
   return (
     <Container>
       <Header>
-        <Title>Entrada</Title>
-        <Icon name="arrow-up-circle" />
+        <Title>{type === 'income' ? 'Entrada' : 'Saída'}</Title>
+        <Icon name={icon} />
       </Header>
       <Footer>
-        <Amount>R$ 17000</Amount>
-        <LastTransaction>2 dias atras</LastTransaction>
+        <Amount>{`R$ ${amount}`}</Amount>
+        <LastTransaction>{lastTransaction}</LastTransaction>
       </Footer>
     </Container>
   );

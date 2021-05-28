@@ -8,11 +8,12 @@ export const Container = styled.View`
   border-radius: ${RFValue(5)}px;
   padding: 19px 23px;
   padding-bottom: ${RFValue(42)}px;
+  margin-right: ${RFValue(16)}px;
 `;
 export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 `;
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
