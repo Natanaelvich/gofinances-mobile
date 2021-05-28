@@ -30,7 +30,10 @@ export function TransactionCard({ data }: TransactionCardProps) {
   return (
     <Container>
       <Title>{data.title}</Title>
-      <Amount type={data.type}>{data.amount}</Amount>
+      <Amount type={data.type}>
+        {data.type === 'outcome' && '-'}
+        {data.amount}
+      </Amount>
       <Footer>
         <Category>
           <Icon name={data.category.icon} />
