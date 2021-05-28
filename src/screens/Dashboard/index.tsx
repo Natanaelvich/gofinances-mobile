@@ -1,5 +1,4 @@
 import React from 'react';
-import { RFValue } from 'react-native-responsive-fontsize';
 import {
   Container,
   Header,
@@ -12,8 +11,10 @@ import {
   Icon,
   HighlightCards,
   Transactions,
+  Title,
 } from './styles';
 import { HighlightCard } from '../../components/HighlightCard';
+import { TransactionCard } from '../../components/TransactionCard';
 
 export function Dashboard() {
   return (
@@ -55,7 +56,25 @@ export function Dashboard() {
         />
       </HighlightCards>
 
-      <Transactions />
+      <Transactions>
+        <Title>Listagem</Title>
+        <TransactionCard
+          type="income"
+          title="Desensolvimento de App"
+          amount="R$ 20.000,00"
+          categoryName="Venda"
+          date="13/05/2021"
+          icon="dollar-sign"
+        />
+        <TransactionCard
+          type="outcome"
+          title="Investimentos"
+          amount="R$ 2.000,00"
+          categoryName="Ações"
+          date="13/05/2021"
+          icon="arrow-down-circle"
+        />
+      </Transactions>
     </Container>
   );
 }
