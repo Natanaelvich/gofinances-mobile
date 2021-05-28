@@ -3,27 +3,31 @@ import { Container } from './styles';
 import { Header, Title, Icon, Footer, Amount, LastTransaction } from './styles';
 
 interface HighlightCardProps {
-  type: 'income' | 'outcome';
-  icon: string;
-  amount: number;
+  title: string;
+  amount: string;
   lastTransaction: string;
+  type: 'up' | 'down' | 'total';
 }
-
+const icon = {
+  up: 'arrow-up-circle',
+  down: 'arrow-down-circle',
+  total: 'dollar-sign',
+};
 export function HighlightCard({
+  title,
   type,
-  icon,
   amount,
   lastTransaction,
 }: HighlightCardProps) {
   return (
-    <Container>
+    <Container type={type}>
       <Header>
-        <Title>{type === 'income' ? 'Entrada' : 'Saída'}</Title>
-        <Icon name={icon} />
+        <Title type={type}>{title}</Title>
+        <Icon name={icon[type]} type={type} />
       </Header>
       <Footer>
-        <Amount>{`R$ ${amount}`}</Amount>
-        <LastTransaction>{lastTransaction}</LastTransaction>
+        <Amount type={type}>{`${amount}`}</Amount>
+        <LastTransaction type={type}>{lastTransaction}</LastTransaction>
       </Footer>
     </Container>
   );
