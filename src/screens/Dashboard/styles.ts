@@ -52,7 +52,7 @@ export const Icon = styled(Feather)`
 export const HighlightCards = styled.ScrollView.attrs({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
-  contentContainerStyle: { paddingHorizontal: 24, paddingVertical: 12 },
+  contentContainerStyle: { paddingHorizontal: 24 },
 })`
   width: 100%;
   position: absolute;
@@ -67,3 +67,4 @@ export const Title = styled.Text`
   font-size: ${RFValue(18)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
+export const TransactionList = styled.FlatList``;

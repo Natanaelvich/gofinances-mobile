@@ -1,4 +1,5 @@
 import React from 'react';
+import { RFValue } from 'react-native-responsive-fontsize';
 import {
   Container,
   Header,
@@ -12,11 +13,28 @@ import {
   HighlightCards,
   Transactions,
   Title,
+  TransactionList,
 } from './styles';
 import { HighlightCard } from '../../components/HighlightCard';
 import { TransactionCard } from '../../components/TransactionCard';
 
 export function Dashboard() {
+  const data = [
+    {
+      type: 'income',
+      title: 'Desenvolvimento de app',
+      amount: 'R$ 25.000,00',
+      category: { name: 'Receita', icon: 'dollar-sign' },
+      date: '13/05/2021',
+    },
+    {
+      type: 'outcome',
+      title: 'Viagem Maldivas',
+      amount: 'R$ 8.000,00',
+      category: { name: 'Gastos', icon: 'arrow-down-circle' },
+      date: '13/05/2021',
+    },
+  ];
   return (
     <Container>
       <Header>
@@ -24,12 +42,12 @@ export function Dashboard() {
           <UserInfo>
             <Photo
               source={{
-                uri: 'https://github.com/Natanaelvich.png',
+                uri: 'https://avatars.githubusercontent.com/u/46244572?v=4',
               }}
             />
             <User>
               <UserGreeting>Olá,</UserGreeting>
-              <UserName>Natanel</UserName>
+              <UserName>Willian</UserName>
             </User>
           </UserInfo>
           <Icon name="power" />
@@ -58,21 +76,10 @@ export function Dashboard() {
 
       <Transactions>
         <Title>Listagem</Title>
-        <TransactionCard
-          type="income"
-          title="Desensolvimento de App"
-          amount="R$ 20.000,00"
-          categoryName="Venda"
-          date="13/05/2021"
-          icon="dollar-sign"
-        />
-        <TransactionCard
-          type="outcome"
-          title="Investimentos"
-          amount="R$ 2.000,00"
-          categoryName="Ações"
-          date="13/05/2021"
-          icon="arrow-down-circle"
+        <TransactionList
+          data={data}
+          keyExtractor={item => item.title}
+          renderItem={({ item }) => <TransactionCard data={item} />}
         />
       </Transactions>
     </Container>
