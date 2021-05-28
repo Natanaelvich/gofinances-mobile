@@ -13,6 +13,7 @@ export default {
     title: '#363f5f',
     text: '#969cb2',
     background: '#f0f2f5',
+    border_opacity: 'rgba(150, 156, 178, 1)',
   },
   fonts: {
     regular: 'Poppins_400Regular',
