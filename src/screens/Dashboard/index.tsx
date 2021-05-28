@@ -28,7 +28,7 @@ export function Dashboard() {
             />
             <User>
               <UserGreeting>Olá,</UserGreeting>
-              <UserName>Willian</UserName>
+              <UserName>Natanel</UserName>
             </User>
           </UserInfo>
           <Icon name="power" />
