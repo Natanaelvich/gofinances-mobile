@@ -11,7 +11,7 @@ import {
   Date,
 } from './styles';
 
-interface TransactionCardProps {
+export interface TransactionCardProps {
   data: {
     title: string;
     amount: string;
