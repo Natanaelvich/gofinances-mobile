@@ -1,5 +1,6 @@
 import React from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
 import {
   Container,
   Header,
@@ -79,6 +80,8 @@ export function Dashboard() {
         <TransactionList
           data={data}
           keyExtractor={item => item.title}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: getBottomSpace() }}
           renderItem={({ item }) => <TransactionCard data={item} />}
         />
       </Transactions>
