@@ -14,6 +14,7 @@ export const Container = styled.View<StyleProps>`
   padding: 19px 23px;
   padding-bottom: ${RFValue(42)}px;
   margin-right: ${RFValue(16)}px;
+  elevation: 6;
 `;
 export const Header = styled.View`
   flex-direction: row;
