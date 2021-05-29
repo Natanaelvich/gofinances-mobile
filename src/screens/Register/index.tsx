@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
-import { Button } from '../../components/Button';
+import { Modal } from 'react-native';
+import { Button } from '../../components/Forms/Button';
 import { CategorySelect } from '../../components/Forms/CategorySelect';
+import { Input } from '../../components/Forms/Input';
+
 import { TransactionTypeButton } from '../../components/Forms/TransactionTypeButton';
-import { Input } from '../../components/Input';
 import {
   Container,
-  Fields,
-  Form,
   Header,
   Title,
+  Form,
+  Fields,
   TransactionTypes,
 } from './styles';
 
 export function Register() {
   const [transactionType, setTransactionType] = useState('');
-
+  const [categoryModalShow, setCategoryModalShow] = useState(false);
+  const [category, setCategory] = useState({
+    key: 'category',
+    name: 'Categoria',
+  });
   function handleSelectedTransactionType(type: 'up' | 'down') {
     setTransactionType(type);
-    console.log(type);
+  }
+  function handleShowModal() {
+    setCategoryModalShow(!categoryModalShow);
   }
 
   return (
@@ -25,12 +33,10 @@ export function Register() {
       <Header>
         <Title>Compras</Title>
       </Header>
-
       <Form>
         <Fields>
           <Input placeholder="Nome" />
           <Input placeholder="Valor" />
-
           <TransactionTypes>
             <TransactionTypeButton
               isActive={transactionType === 'down'}
@@ -47,11 +53,20 @@ export function Register() {
               onPress={() => handleSelectedTransactionType('up')}
             />
           </TransactionTypes>
-
-          <CategorySelect title="Categorias" />
+          <CategorySelectButton
+            onPress={handleShowModal}
+            title={category.name}
+          />
         </Fields>
         <Button title="Enviar" />
       </Form>
+      <Modal visible={categoryModalShow}>
+        <CategorySelect
+          category={category}
+          setCategory={setCategory}
+          closeSelectCategory={handleShowModal}
+        />
+      </Modal>
     </Container>
   );
 }
