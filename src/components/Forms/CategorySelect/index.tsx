@@ -6,9 +6,19 @@ interface CategorySelectProps {
 }
 
 export function CategorySelect({ title }: CategorySelectProps) {
+  function handleCategorySelect(category: Category) {
+    setCategory(category);
+    console.log(category.name);
+  }
+
   return (
     <Container>
-      <Category>{title}</Category>
+      <Category
+        onPress={() => handleCategorySelect(item)}
+        isActive={item.key === category.key}
+      >
+        {title}
+      </Category>
       <Icon name="chevron-down" />
     </Container>
   );
