@@ -8,7 +8,7 @@ import {
   Form,
   Header,
   Title,
-  TransactionTypeButtonContainer,
+  TransactionTypes,
 } from './styles';
 
 export function Register() {
@@ -30,7 +30,7 @@ export function Register() {
           <Input placeholder="Nome" />
           <Input placeholder="Valor" />
 
-          <TransactionTypeButtonContainer>
+          <TransactionTypes>
             <TransactionTypeButton
               isActive={transactionType === 'down'}
               type="down"
@@ -45,7 +45,7 @@ export function Register() {
               icon="arrow-up-circle"
               onPress={() => handleSelectedTransactionType('up')}
             />
-          </TransactionTypeButtonContainer>
+          </TransactionTypes>
         </Fields>
         <Button title="Enviar" />
       </Form>
