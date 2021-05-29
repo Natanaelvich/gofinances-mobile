@@ -7,7 +7,12 @@ interface IconProps {
   type: 'up' | 'down';
 }
 
-export const Container = styled(TouchableOpacity)`
+interface ContainerProps {
+  isActive: boolean;
+  type: 'up' | 'down';
+}
+
+export const Container = styled(TouchableOpacity)<ContainerProps>`
   width: 48%;
   height: ${RFValue(56)}px;
   border: 1.5px solid ${({ theme }) => theme.colors.text};
