@@ -33,6 +33,11 @@ export const Container = styled(TouchableOpacity)<ContainerProps>`
     css`
       background-color: ${({ theme }) => theme.colors.success_light};
     `}
+    ${({ isActive, type }) =>
+    isActive &&
+    css`
+      border: 0px;
+    `}
 `;
 
 export const Title = styled.Text`
