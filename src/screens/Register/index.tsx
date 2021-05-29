@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-native';
 import { Button } from '../../components/Forms/Button';
-import { CategorySelect } from '../../components/Forms/CategorySelect';
 import { Input } from '../../components/Forms/Input';
-
 import { TransactionTypeButton } from '../../components/Forms/TransactionTypeButton';
 import {
   Container,
@@ -13,6 +11,8 @@ import {
   Fields,
   TransactionTypes,
 } from './styles';
+import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
+import { CategorySelect } from '../CategorySelect';
 
 export function Register() {
   const [transactionType, setTransactionType] = useState('');
@@ -53,10 +53,7 @@ export function Register() {
               onPress={() => handleSelectedTransactionType('up')}
             />
           </TransactionTypes>
-          <CategorySelectButton
-            onPress={handleShowModal}
-            title={category.name}
-          />
+          <CategorySelectButton onPress={handleShowModal} title="Categorias" />
         </Fields>
         <Button title="Enviar" />
       </Form>
