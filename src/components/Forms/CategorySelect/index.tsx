@@ -1,15 +1,15 @@
 import React from 'react';
+import { Container, Category, Icon } from './styles';
 
-import { Text } from 'react-native';
+interface CategorySelectProps {
+  title: string;
+}
 
-import { Container } from './styles';
-
-function CategorySelect() {
+export function CategorySelect({ title }: CategorySelectProps) {
   return (
     <Container>
-      <Text>CategorySelect</Text>
+      <Category>{title}</Category>
+      <Icon name="chevron-down" />
     </Container>
   );
 }
-
-export default CategorySelect;
