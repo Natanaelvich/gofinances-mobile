@@ -1,5 +1,5 @@
 import { RFValue } from 'react-native-responsive-fontsize';
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
 
@@ -20,6 +20,19 @@ export const Container = styled(TouchableOpacity)<ContainerProps>`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+
+  ${({ isActive, type }) =>
+    isActive &&
+    type === 'down' &&
+    css`
+      background-color: ${({ theme }) => theme.colors.attention_light};
+    `}
+  ${({ isActive, type }) =>
+    isActive &&
+    type === 'up' &&
+    css`
+      background-color: ${({ theme }) => theme.colors.success_light};
+    `}
 `;
 
 export const Title = styled.Text`
