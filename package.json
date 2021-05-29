@@ -1,11 +1,17 @@
 {
   "main": "index.js",
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
     "web": "expo start --web",
+    "android": "react-native run-android",
+    "android:release": "cd android/ && ./gradlew clean && ./gradlew cleanBuildCache && ./gradlew assembleRelease",
+    "android:abb": "cd android/ && ./gradlew clean && ./gradlew cleanBuildCache && ./gradlew bundleRelease",
+    "android:staging": "cd android/ && ./gradlew clean && ./gradlew cleanBuildCache && ./gradlew assembleReleaseStaging",
+    "ios": "react-native run-ios",
+    "ios:staging": "react-native run-ios --configuration Staging",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint .",
+    "pod": "cd ios && pod install"
   },
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.1.0",
