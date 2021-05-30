@@ -8,8 +8,7 @@ import {
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 import theme from './global/styles/theme';
-import { Dashboard } from './screens/Dashboard';
-import { Register } from './screens/Register';
+import Routes from './routes';
 
 const Main: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -20,7 +19,7 @@ const Main: React.FC = () => {
   if (!fontsLoaded) return <AppLoading />;
   return (
     <ThemeProvider theme={theme}>
-      <Register />
+      <Routes />
     </ThemeProvider>
   );
 };
