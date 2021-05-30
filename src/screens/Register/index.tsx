@@ -13,6 +13,7 @@ import {
   Form,
   Fields,
   TransactionTypes,
+  ContainerKeyboardDismiss,
 } from './styles';
 import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
 import { CategorySelect } from '../CategorySelect';
@@ -71,7 +72,7 @@ export function Register() {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <ContainerKeyboardDismiss onPress={Keyboard.dismiss}>
       <Container>
         <Header>
           <Title>Compras</Title>
@@ -114,7 +115,7 @@ export function Register() {
               title="Categorias"
             />
           </Fields>
-          <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
+          <Button title="Enviar" onPress={() => handleSubmit(handleRegister)} />
         </Form>
         <Modal visible={categoryModalShow}>
           <CategorySelect
@@ -124,6 +125,6 @@ export function Register() {
           />
         </Modal>
       </Container>
-    </TouchableWithoutFeedback>
+    </ContainerKeyboardDismiss>
   );
 }
