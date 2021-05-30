@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Alert, Keyboard, Modal } from 'react-native';
 import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Button } from '../../components/Forms/Button';
-import { Input } from '../../components/Forms/Input';
 import { TransactionTypeButton } from '../../components/Forms/TransactionTypeButton';
 import {
   Container,
@@ -22,8 +23,20 @@ interface FormDataProps {
   amount: string;
 }
 
+const schema = Yup.object().shape({
+  name: Yup.string().required('Nome é obrigatório'),
+  amount: Yup.number()
+    .required('O valor é obrigatório')
+    .typeError('Informe o valor numérico')
+    .positive('O valor deve ser maior que zero'),
+});
+
 export function Register() {
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   const [transactionType, setTransactionType] = useState('');
   const [categoryModalShow, setCategoryModalShow] = useState(false);
@@ -66,6 +79,7 @@ export function Register() {
         <Form>
           <Fields>
             <InputForm
+              error={errors.name && errors.name.message}
               name="name"
               autoCapitalize="sentences"
               autoCorrect={false}
@@ -73,6 +87,7 @@ export function Register() {
               control={control}
             />
             <InputForm
+              error={errors.amount && errors.amount.message}
               name="amount"
               keyboardType="numeric"
               placeholder="Valor"
