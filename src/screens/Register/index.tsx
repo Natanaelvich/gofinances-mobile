@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Keyboard, Modal } from 'react-native';
+import { Alert, Keyboard, Modal } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Button } from '../../components/Forms/Button';
@@ -33,6 +33,13 @@ export function Register() {
   });
 
   function handleRegister(form: FormDataProps) {
+    if (!transactionType) {
+      return Alert.alert('Escolha o tipo de transação');
+    }
+    if (category.key === 'category') {
+      return Alert.alert('Selecione uma categoria');
+    }
+
     const data = {
       name: form.name,
       amount: form.amount,
