@@ -59,6 +59,7 @@ export function Register() {
   function handleShowModal() {
     setCategoryModalShow(!categoryModalShow);
   }
+
   async function handleRegister(form: FormDataProps) {
     if (!transactionType) {
       return Alert.alert('Escolha o tipo de transação');
@@ -70,7 +71,7 @@ export function Register() {
       id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
-      transactionType,
+      type: transactionType,
       category: category.key,
       date: new Date(),
     };
@@ -156,7 +157,12 @@ export function Register() {
               title={category.name}
             />
           </Fields>
-          <Button title="Enviar" onPress={() => handleSubmit(handleRegister)} />
+          <Button
+            title="Enviar"
+            onPress={() => {
+              handleSubmit(handleRegister)();
+            }}
+          />
         </Form>
         <Modal visible={categoryModalShow}>
           <CategorySelect
