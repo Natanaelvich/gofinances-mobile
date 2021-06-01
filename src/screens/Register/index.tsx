@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { Keyboard, Modal, TouchableWithoutFeedback, Alert } from 'react-native';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
+import uuid from 'react-native-uuid';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from '../../components/Forms/Button';
 import { InputForm } from '../../components/InputForm';
 import { TransactionTypeButton } from '../../components/Forms/TransactionTypeButton';
@@ -29,39 +32,95 @@ const schema = Yup.object().shape({
     .positive('O valor deve ser maior que zero'),
 });
 export function Register() {
-  const [transactionType, setTransactionType] = useState('');
+  const dataKey = '@gofinacen:transacations';
+
+  const navigation = useNavigation();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const [transactionType, setTransacionType] = useState('');
   const [categoryModalShow, setCategoryModalShow] = useState(false);
   const [category, setCategory] = useState({
     key: 'category',
     name: 'Categoria',
   });
+
+  function resetForm() {
+    setTransacionType('');
+    setCategory({
+      key: 'category',
+      name: 'Categoria',
+    });
+    reset();
+  }
+
   function handleSelectedTransactionType(type: 'up' | 'down') {
-    setTransactionType(type);
+    setTransacionType(type);
   }
   function handleShowModal() {
     setCategoryModalShow(!categoryModalShow);
   }
-  function handleRegister(form: FormDataProps) {
+  async function handleRegister(form: FormDataProps) {
     if (!transactionType) {
       return Alert.alert('Escolha o tipo de transação');
     }
     if (category.key === 'category') {
       return Alert.alert('Selecione uma categoria');
     }
-
-    const data = {
+    const newData = {
+      id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
       transactionType,
       category: category.key,
+      date: new Date(),
     };
-    console.log(data);
+
+    try {
+      const data = await AsyncStorage.getItem(dataKey);
+      const currentData = data ? JSON.parse(data) : [];
+      const dataFormatted = [...currentData, newData];
+
+      await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
+
+      resetForm();
+      navigation.navigate('Listagem');
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Não foi possível salvar');
+    }
+    console.log(newData);
   }
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+
+  // useEffect(() => {
+  // async function loadData(){
+  // 	try {
+  // 		const currentData = await AsyncStorage.getItem(dataKey);
+  // 		console.log(JSON.parse(currentData!));
+  // 	} catch (error) {
+  // 		console.log(error);
+  // 		Alert.alert("Não foi possivel carregar as informações, tente novamente.");
+  // 	}
+  // }
+  // loadData();
+  // async function deleteData(){
+  // 	const currentData = await AsyncStorage.getItem(dataKey);
+  // 	if(currentData){
+  // 		try {
+  // 			await AsyncStorage.removeItem(dataKey);
+  // 		} catch (error) {
+  // 			console.log(error);
+  // 			Alert.alert('Não foi possivel deletar, por favor tente novamente!');
+  // 		}
+  // 	}
+  // }
+  // deleteData();
+  // });
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
