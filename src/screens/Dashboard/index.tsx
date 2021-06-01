@@ -45,12 +45,14 @@ interface HighLighsDataProps {
 
 export function Dashboard() {
   const dataKey = '@gofinacen:transacations';
+
+  const theme = useTheme();
+
   const [isLoading, setIsLoading] = useState(true);
   const [transactions, setTransactions] = useState<DataListProps[]>([]);
   const [highlightData, setHighilightData] = useState<HighLighsDataProps>(
     {} as HighLighsDataProps,
   );
-  const theme = useTheme();
 
   function getLastDate(
     collection: DataListProps[],
@@ -78,10 +80,12 @@ export function Dashboard() {
   async function loadTransacions() {
     try {
       const response = await AsyncStorage.getItem(dataKey);
-      const transactions = response ? JSON.parse(response) : [];
+      const transactionsParse = response ? JSON.parse(response) : [];
+
       let entriesTotal = 0;
       let expenseveTotal = 0;
-      const transactionsFormated: DataListProps[] = transactions.map(
+
+      const transactionsFormated: DataListProps[] = transactionsParse.map(
         (item: DataListProps) => {
           if (item.type === 'positive') {
             entriesTotal += Number(item.amount);
@@ -110,8 +114,15 @@ export function Dashboard() {
           };
         },
       );
-      const lastTransactionsEntries = getLastDate(transactions, 'positive');
-      const lastTransactionsExpansives = getLastDate(transactions, 'negative');
+
+      const lastTransactionsEntries = getLastDate(
+        transactionsParse,
+        'positive',
+      );
+      const lastTransactionsExpansives = getLastDate(
+        transactionsParse,
+        'negative',
+      );
       const totalInterval = `01 à ${lastTransactionsExpansives}`;
 
       setHighilightData({
@@ -182,7 +193,11 @@ export function Dashboard() {
                   <UserName>Willian</UserName>
                 </User>
               </UserInfo>
-              <LogoutButton onPress={() => {}}>
+              <LogoutButton
+                onPress={() => {
+                  console.log('logout');
+                }}
+              >
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>
@@ -191,19 +206,21 @@ export function Dashboard() {
             <HighlightCard
               title="Entrada"
               amount={highlightData?.entries?.amount}
-              lastTransacion={highlightData?.entries?.lastTransaction || '-'}
+              lastTransaction={highlightData?.entries?.lastTransaction || '-'}
               type="up"
             />
             <HighlightCard
               title="Saídas"
               amount={highlightData?.expensives?.amount}
-              lastTransacion={highlightData?.expensives?.lastTransaction || '-'}
+              lastTransaction={
+                highlightData?.expensives?.lastTransaction || '-'
+              }
               type="down"
             />
             <HighlightCard
               title="Total"
               amount={highlightData?.total?.amount}
-              lastTransacion={highlightData?.total?.lastTransaction || '-'}
+              lastTransaction={highlightData?.total?.lastTransaction || '-'}
               type="total"
             />
           </HighlightCards>
