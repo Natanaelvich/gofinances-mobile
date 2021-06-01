@@ -1,52 +1,60 @@
-import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
-import { Feather } from '@expo/vector-icons';
 
-interface TypeProps {
-  type: 'income' | 'outcome';
+import { Feather } from '@expo/vector-icons';
+import { RFValue } from 'react-native-responsive-fontsize';
+
+interface TransactionProps {
+  type: 'positive' | 'negative';
 }
 
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.shape};
-  padding: 24px;
+  padding: 17px 24px;
   border-radius: 5px;
-  margin-top: 16px;
+
+  margin-bottom: 16px;
 `;
+
 export const Title = styled.Text`
   font-size: ${RFValue(14)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
-  line-height: ${RFValue(21)}px;
+  color: ${({ theme }) => theme.colors.text};
 `;
-export const Amount = styled.Text<TypeProps>`
-  color: ${({ theme, type }) =>
-    type === 'income' ? theme.colors.success : theme.colors.attention};
+
+export const Amount = styled.Text<TransactionProps>`
   font-size: ${RFValue(20)}px;
+  margin-top: 2px;
   font-family: ${({ theme }) => theme.fonts.regular};
-  margin-top: ${RFValue(2)}px;
+  color: ${({ theme, type }) =>
+    type === 'positive' ? theme.colors.success : theme.colors.attention_light};
 `;
+
 export const Footer = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 19px;
 `;
-export const Icon = styled(Feather)`
-  color: ${({ theme }) => theme.colors.text};
-  font-size: ${RFValue(14)}px;
-  line-height: ${RFValue(21)}px;
-`;
+
 export const Category = styled.View`
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 `;
+
 export const CategoryName = styled.Text`
-  color: ${({ theme }) => theme.colors.text};
-  padding-right: ${RFValue(45)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(14)}px;
-  line-height: ${RFValue(21)}px;
-  margin-left: 16px;
+  color: ${({ theme }) => theme.colors.text};
+  margin-left: ${RFValue(17)}px;
 `;
+
 export const Date = styled.Text`
-  color: ${({ theme }) => theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(14)}px;
-  line-height: ${RFValue(21)}px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const Icon = styled(Feather)`
+  font-size: ${RFValue(20)}px;
+  color: ${({ theme }) => theme.colors.text};
 `;
