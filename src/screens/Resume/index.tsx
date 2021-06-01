@@ -12,8 +12,6 @@ import {
   Container,
   LoadContainer,
   Content,
-  Header,
-  Title,
   ChartContainer,
   MouthSelect,
   MounthSelectButton,
@@ -22,6 +20,7 @@ import {
 } from './styles';
 import { categories } from '../../utils/categories';
 import { HistoryCard } from '../../components/HistoryCard';
+import { Header } from '../../components/Header';
 
 export interface TransactionProps {
   type: 'positive' | 'negative';
@@ -110,16 +109,15 @@ export function Resume() {
     setTotalByCategories(totalByCategory);
     setIsLoading(false);
   }
+
   useEffect(
     useCallback(() => {
       loadData();
-    }, [selectedDate]),
+    }, [loadData]),
   );
   return (
     <Container>
-      <Header>
-        <Title>Resumo</Title>
-      </Header>
+      <Header title="Resumo" />
 
       {isLoading ? (
         <LoadContainer>

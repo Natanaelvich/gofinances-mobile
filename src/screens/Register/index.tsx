@@ -9,16 +9,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from '../../components/Forms/Button';
 import { InputForm } from '../../components/InputForm';
 import { TransactionTypeButton } from '../../components/Forms/TransactionTypeButton';
-import {
-  Container,
-  Header,
-  Title,
-  Form,
-  Fields,
-  TransactionTypes,
-} from './styles';
+import { Container, Form, Fields, TransactionTypes } from './styles';
 import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
 import { CategorySelect } from '../CategorySelect';
+import { Header } from '../../components/Header';
 
 interface FormDataProps {
   name: string;
@@ -125,9 +119,7 @@ export function Register() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
-        <Header>
-          <Title>Compras</Title>
-        </Header>
+        <Header title="Cadastro" />
         <Form>
           <Fields>
             <InputForm
