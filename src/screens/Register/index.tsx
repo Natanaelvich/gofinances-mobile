@@ -59,7 +59,7 @@ export function Register() {
     reset();
   }
 
-  function handleSelectedTransactionType(type: 'up' | 'down') {
+  function handleTransactionTypeSelect(type: 'positive' | 'negative') {
     setTransacionType(type);
   }
   function handleShowModal() {
@@ -147,18 +147,16 @@ export function Register() {
             />
             <TransactionTypes>
               <TransactionTypeButton
-                isActive={transactionType === 'down'}
-                type="down"
-                title="Outcome"
-                icon="arrow-down-circle"
-                onPress={() => handleSelectedTransactionType('down')}
-              />
-              <TransactionTypeButton
-                isActive={transactionType === 'up'}
+                isActive={transactionType === 'positive'}
                 type="up"
                 title="Income"
-                icon="arrow-up-circle"
-                onPress={() => handleSelectedTransactionType('up')}
+                onPress={() => handleTransactionTypeSelect('positive')}
+              />
+              <TransactionTypeButton
+                isActive={transactionType === 'negative'}
+                type="down"
+                title="Outcome"
+                onPress={() => handleTransactionTypeSelect('negative')}
               />
             </TransactionTypes>
             <CategorySelectButton
