@@ -3,7 +3,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { useFocusEffect } from '@react-navigation/core';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Alert } from 'react-native';
 import { useTheme } from 'styled-components';
 import {
   Container,
@@ -56,18 +56,24 @@ export function Dashboard() {
     collection: DataListProps[],
     type: 'positive' | 'negative',
   ) {
-    // eslint-disable-next-line prefer-spread
-    const lastTransations = Math.max.apply(
-      Math,
-      collection
-        .filter(transaction => transaction.type === type)
-        .map(transaction => new Date(transaction.date).getTime()),
-    );
-
-    return Intl.DateTimeFormat('pt-BR', {
-      day: '2-digit',
-      month: 'long',
-    }).format(new Date(lastTransations));
+    try {
+      const prefixo = `Última ${type === 'positive' ? 'entrada' : 'saida'} `;
+      // eslint-disable-next-line prefer-spread
+      const lastTransations = Math.max.apply(
+        Math,
+        collection
+          .filter(transaction => transaction.type === type)
+          .map(transaction => new Date(transaction.date).getTime()),
+      );
+      // return format(new Date(), 'dd, MMMM', {locale: ptBR});
+      const response = Intl.DateTimeFormat('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+      }).format(new Date(lastTransations));
+      return `${prefixo}${response}`;
+    } catch (error) {
+      return 'Sem lançamentos';
+    }
   }
   async function loadTransacions() {
     try {
@@ -114,14 +120,14 @@ export function Dashboard() {
             style: 'currency',
             currency: 'BRL',
           }),
-          lastTransaction: `Última entrada ${lastTransactionsEntries}`,
+          lastTransaction: `${lastTransactionsEntries}`,
         },
         expensives: {
           amount: expenseveTotal.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL',
           }),
-          lastTransaction: `Última saida ${lastTransactionsExpansives}`,
+          lastTransaction: `${lastTransactionsExpansives}`,
         },
         total: {
           amount: (entriesTotal - expenseveTotal).toLocaleString('pt-BR', {

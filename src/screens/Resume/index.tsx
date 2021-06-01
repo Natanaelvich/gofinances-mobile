@@ -47,6 +47,8 @@ export function Resume() {
   >([]);
   const theme = useTheme();
 
+  const bottomTabBarHeight = useBottomTabBarHeight();
+
   function handleDateChange(action: 'next' | 'previous') {
     setIsLoading(true);
     if (action === 'next') {
@@ -128,7 +130,7 @@ export function Resume() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             paddingHorizontal: 24,
-            paddingBottom: useBottomTabBarHeight(),
+            paddingBottom: bottomTabBarHeight,
           }}
         >
           <MouthSelect>
@@ -153,7 +155,7 @@ export function Resume() {
                   fill: theme.colors.shape,
                 },
               }}
-              labelRadius={200}
+              labelRadius={70}
             />
           </ChartContainer>
           {totalByCategories.map(item => (
