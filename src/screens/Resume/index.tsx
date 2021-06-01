@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator } from 'react-native';
 import { VictoryPie } from 'victory-native';
@@ -8,6 +8,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { addMonths, subMonths, format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
+import { useFocusEffect } from '@react-navigation/core';
 import {
   Container,
   LoadContainer,
@@ -57,7 +58,7 @@ export function Resume() {
     }
   }
 
-  async function loadData() {
+  const loadData = useCallback(async () => {
     const dataKey = '@gofinacen:transacations';
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
@@ -108,13 +109,14 @@ export function Resume() {
 
     setTotalByCategories(totalByCategory);
     setIsLoading(false);
-  }
+  }, [selectedDate]);
 
-  useEffect(
+  useFocusEffect(
     useCallback(() => {
       loadData();
     }, [loadData]),
   );
+
   return (
     <Container>
       <Header title="Resumo" />
