@@ -8,7 +8,7 @@ interface ButtonProps {
 }
 export const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.backgorund};
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const Content = styled.ScrollView``;
