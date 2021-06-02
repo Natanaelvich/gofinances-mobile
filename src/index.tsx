@@ -7,8 +7,10 @@ import {
 } from '@expo-google-fonts/poppins';
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
+import { StatusBar } from 'react-native';
 import theme from './global/styles/theme';
 import { Routes } from './routes';
+import { AuthProvider } from './hooks/auth';
 
 const Main: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -19,7 +21,10 @@ const Main: React.FC = () => {
   if (!fontsLoaded) return <AppLoading />;
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <StatusBar barStyle="light-content" />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   );
 };
