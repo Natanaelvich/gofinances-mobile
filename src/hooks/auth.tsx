@@ -38,10 +38,10 @@ function AuthProvider({ children, ...rest }: AuthProviderProps) {
   async function signInWithGoogle() {
     try {
       const result = await Google.logInAsync({
-        iosClientId:
-          '569761105336-e4sftgbhjjecbd6e1cjg1j67nis1rn1i.apps.googleusercontent.com',
         androidClientId:
-          '569761105336-n18mf1q54boh3rkrum8hhihb6ibi9qsh.apps.googleusercontent.com',
+          '1095654890138-nf0n52kukog9kbjujmnon4k8jl3ca40u.apps.googleusercontent.com',
+        iosClientId:
+          '1095654890138-hra0g8a46kimm6fv3e1839uvt68v0u2m.apps.googleusercontent.com',
         scopes: ['profile', 'email'],
       });
 
