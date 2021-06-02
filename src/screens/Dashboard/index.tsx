@@ -27,6 +27,7 @@ import {
   TransactionCard,
   TransactionCardProps,
 } from '../../components/TransactionCard';
+import { useAuth } from '../../hooks/auth';
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -44,7 +45,8 @@ interface HighLighsDataProps {
 }
 
 export function Dashboard() {
-  const dataKey = '@gofinacen:transacations';
+  const { sigOut, user } = useAuth();
+  const dataKey = `@gofinacen:transacations_user:${user.id}`;
 
   const theme = useTheme();
 
@@ -185,19 +187,17 @@ export function Dashboard() {
               <UserInfo>
                 <Photo
                   source={{
-                    uri: 'https://avatars.githubusercontent.com/u/46244572?v=4',
+                    uri: user.photo
+                      ? user.photo
+                      : 'https://i.pinimg.com/originals/8f/6e/60/8f6e606eb6779aa33ec35da0a0cc8b7e.png',
                   }}
                 />
                 <User>
-                  <UserGreeting>Olá,</UserGreeting>
-                  <UserName>Willian</UserName>
+                  <UserGreeting>Olá, </UserGreeting>
+                  <UserName>{user.name} </UserName>
                 </User>
               </UserInfo>
-              <LogoutButton
-                onPress={() => {
-                  console.log('logout');
-                }}
-              >
+              <LogoutButton onPress={sigOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>
