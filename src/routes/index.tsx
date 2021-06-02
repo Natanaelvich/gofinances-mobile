@@ -11,7 +11,7 @@ export function Routes() {
   const { user } = useAuth();
   return (
     <NavigationContainer>
-      {user.id ? <AppRoutes /> : <AuthRoutes />}
+      {user?.id ? <AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );
 }
