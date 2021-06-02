@@ -1,6 +1,7 @@
 {
   "name": "gofinances",
   "displayName": "Go Finances",
+  "android.package" : "com.gofinances",
   "expo": {
     "name": "gofinances",
     "slug": "gofinances",
