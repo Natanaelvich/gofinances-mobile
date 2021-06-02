@@ -13,6 +13,7 @@ import { Container, Form, Fields, TransactionTypes } from './styles';
 import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
 import { CategorySelect } from '../CategorySelect';
 import { Header } from '../../components/Header';
+import { useAuth } from '../../hooks/auth';
 
 interface FormDataProps {
   name: string;
@@ -26,7 +27,8 @@ const schema = Yup.object().shape({
     .positive('O valor deve ser maior que zero'),
 });
 export function Register() {
-  const dataKey = '@gofinacen:transacations';
+  const { user } = useAuth();
+  const dataKey = `@gofinacen:transacations_user:${user.id}`;
 
   const navigation = useNavigation();
 

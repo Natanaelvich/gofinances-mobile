@@ -22,6 +22,7 @@ import {
 import { categories } from '../../utils/categories';
 import { HistoryCard } from '../../components/HistoryCard';
 import { Header } from '../../components/Header';
+import { useAuth } from '../../hooks/auth';
 
 export interface TransactionProps {
   type: 'positive' | 'negative';
@@ -40,6 +41,8 @@ interface CategoryDataProps {
   key: string;
 }
 export function Resume() {
+  const { user } = useAuth();
+
   const [isLoading, setIsLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [totalByCategories, setTotalByCategories] = useState<
@@ -59,7 +62,8 @@ export function Resume() {
   }
 
   const loadData = useCallback(async () => {
-    const dataKey = '@gofinacen:transacations';
+    const dataKey = `@gofinacen:transacations_user:${user.id}`;
+
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
 
