@@ -8,7 +8,7 @@ import {
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 import theme from './global/styles/theme';
-import Routes from './routes';
+import { Routes } from './routes';
 
 const Main: React.FC = () => {
   const [fontsLoaded] = useFonts({
