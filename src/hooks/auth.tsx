@@ -39,11 +39,12 @@ function AuthProvider({ children, ...rest }: AuthProviderProps) {
     try {
       const result = await Google.logInAsync({
         iosClientId:
-          '597824373648-lqm77jcafg4vf34ogss524cvaludabg3.apps.googleusercontent.com',
+          '569761105336-e4sftgbhjjecbd6e1cjg1j67nis1rn1i.apps.googleusercontent.com',
         androidClientId:
-          '597824373648-npsn59eu4cv33ciqdaqcai1gl601icj9.apps.googleusercontent.com',
+          '569761105336-n18mf1q54boh3rkrum8hhihb6ibi9qsh.apps.googleusercontent.com',
         scopes: ['profile', 'email'],
       });
+
       if (result.type === 'success') {
         const userLogged = {
           id: String(result.user.id),
