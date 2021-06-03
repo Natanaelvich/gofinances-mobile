@@ -1,3 +1,4 @@
+
 <p align='center'>
   <img src='https://user-images.githubusercontent.com/52014318/119578859-b20d7280-bd93-11eb-8e44-c505cab720a4.png' width='140' />
   <h1 align='center'> GOFINANCES </h1>
@@ -32,6 +33,7 @@
 
 <p align='center'>
   <img src='https://user-images.githubusercontent.com/52014318/120574005-e072f980-c3f4-11eb-90bb-119316455f70.gif' width='240' />
+  <img src='https://user-images.githubusercontent.com/52014318/120577221-647bb000-c3fa-11eb-877c-baa4d15d50e6.gif' width='260' />
 </p>
 
 
