@@ -19,7 +19,19 @@
 ## ScreenShots
 
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/52014318/119503216-194e0700-bd41-11eb-8249-df65a5c0150f.png' width='240' />
+<img src='https://user-images.githubusercontent.com/52014318/120575292-2df06600-c3f7-11eb-8356-41b6ccfc8781.png' width='240' />
+<img src='https://user-images.githubusercontent.com/52014318/120575297-2e88fc80-c3f7-11eb-8ad5-7182960e0607.png' width='240' />
+<img src='https://user-images.githubusercontent.com/52014318/120575298-2f219300-c3f7-11eb-9d29-7ab8acc5d5da.png' width='240' />
+</p>
+
+<p align='center'>
+<img src='https://user-images.githubusercontent.com/52014318/120575301-2f219300-c3f7-11eb-9187-841a6c5e155f.png' width='240' />
+<img src='https://user-images.githubusercontent.com/52014318/120575302-2fba2980-c3f7-11eb-8251-cb203e40ac77.png' width='240' />
+<img src='https://user-images.githubusercontent.com/52014318/120575303-2fba2980-c3f7-11eb-9306-f2d5948556c7.png' width='240' />
+</p>
+
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/52014318/120574005-e072f980-c3f4-11eb-90bb-119316455f70.gif' width='240' />
 </p>
 
 
