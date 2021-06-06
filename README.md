@@ -31,6 +31,8 @@
 <img src='https://user-images.githubusercontent.com/52014318/120575303-2fba2980-c3f7-11eb-9306-f2d5948556c7.png' width='240' />
 </p>
 
+## GIFs
+
 <p align='center'>
   <img src='https://user-images.githubusercontent.com/52014318/120574005-e072f980-c3f4-11eb-90bb-119316455f70.gif' width='240' />
   <img src='https://user-images.githubusercontent.com/52014318/120577221-647bb000-c3fa-11eb-877c-baa4d15d50e6.gif' width='260' />
