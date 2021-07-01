@@ -23,14 +23,13 @@ interface CategorySelectProps {
   closeSelectCategory: () => void;
 }
 
-export function CategorySelect({
+const CategorySelect: React.FC<CategorySelectProps> = ({
   category,
   setCategory,
   closeSelectCategory,
-}: CategorySelectProps) {
-  function handleCategorySelect(category: Category) {
-    setCategory(category);
-    console.log(category.name);
+}) => {
+  function handleCategorySelect(categoryParam: Category) {
+    setCategory(categoryParam);
   }
 
   return (
@@ -41,7 +40,7 @@ export function CategorySelect({
       <FlatList
         data={categories}
         style={{ flex: 1, width: '100%' }}
-        keyExtractor={(category: Category) => category.key}
+        keyExtractor={(item: Category) => item.key}
         ItemSeparatorComponent={() => <Separator />}
         renderItem={({ item }) => (
           <Category
@@ -58,4 +57,6 @@ export function CategorySelect({
       </Footer>
     </Container>
   );
-}
+};
+
+export default CategorySelect;
