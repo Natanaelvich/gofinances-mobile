@@ -28,13 +28,7 @@ describe('Auth hook', () => {
   it('user should be not connect if cancel authentication with google', async () => {
     const googleMocked = mocked(logInAsync as any);
     googleMocked.mockReturnValue({
-      type: 'error',
-      user: {
-        id: '',
-        name: '',
-        email: '',
-        photoUrl: '',
-      },
+      type: 'cancel',
     });
     const { result } = renderHook(() => useAuth(), {
       wrapper: AuthProvider,
