@@ -26,7 +26,7 @@ interface IAuthContextData {
   user: User;
   signInWithGoogle(): Promise<void>;
   signInWithApple(): Promise<void>;
-  sigOut(): Promise<void>;
+  signOut(): Promise<void>;
   userStorageLoading: boolean;
 }
 
@@ -34,6 +34,18 @@ function AuthProvider({ children, ...rest }: AuthProviderProps) {
   const [user, setUser] = useState<User>({} as User);
   const [userStorageLoading, setUserStorageLoading] = useState(true);
   const dataKey = '@gofinacen:user';
+
+  useEffect(() => {
+    async function getUserAsync() {
+      const userStoraged = await AsyncStorage.getItem(dataKey);
+      if (userStoraged) {
+        const userLogged = JSON.parse(userStoraged) as User;
+        setUser(userLogged);
+      }
+      setUserStorageLoading(false);
+    }
+    getUserAsync();
+  }, []);
 
   async function signInWithGoogle() {
     try {
@@ -84,21 +96,10 @@ function AuthProvider({ children, ...rest }: AuthProviderProps) {
       throw new Error(error);
     }
   }
-  async function sigOut() {
+  async function signOut() {
     setUser({} as User);
     await AsyncStorage.removeItem(dataKey);
   }
-  useEffect(() => {
-    async function getUserAsync() {
-      const userStoraged = await AsyncStorage.getItem(dataKey);
-      if (userStoraged) {
-        const userLogged = JSON.parse(userStoraged) as User;
-        setUser(userLogged);
-      }
-      setUserStorageLoading(false);
-    }
-    getUserAsync();
-  }, []);
 
   function formatName(name: string) {
     const splitName = name.split(' ');
@@ -113,7 +114,7 @@ function AuthProvider({ children, ...rest }: AuthProviderProps) {
         user,
         signInWithGoogle,
         signInWithApple,
-        sigOut,
+        signOut,
         userStorageLoading,
       }}
     >

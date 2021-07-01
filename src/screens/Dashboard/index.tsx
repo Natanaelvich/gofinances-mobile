@@ -45,7 +45,7 @@ interface HighLighsDataProps {
 }
 
 export function Dashboard() {
-  const { sigOut, user } = useAuth();
+  const { signOut, user } = useAuth();
   const dataKey = `@gofinacen:transacations_user:${user.id}`;
 
   const theme = useTheme();
@@ -197,7 +197,7 @@ export function Dashboard() {
                   <UserName>{user.name} </UserName>
                 </User>
               </UserInfo>
-              <LogoutButton onPress={sigOut}>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>
