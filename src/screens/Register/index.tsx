@@ -11,7 +11,7 @@ import { InputForm } from '../../components/InputForm';
 import { TransactionTypeButton } from '../../components/Forms/TransactionTypeButton';
 import { Container, Form, Fields, TransactionTypes } from './styles';
 import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
-import { CategorySelect } from '../CategorySelect';
+import CategorySelect from '../CategorySelect';
 import { Header } from '../../components/Header';
 import { useAuth } from '../../hooks/auth';
 
@@ -28,7 +28,7 @@ const schema = Yup.object().shape({
 });
 export function Register() {
   const { user } = useAuth();
-  const dataKey = `@gofinacen:transacations_user:${user.id}`;
+  const dataKey = `@gofinacen:transacations_user:${user?.id}`;
 
   const navigation = useNavigation();
 
@@ -166,7 +166,7 @@ export function Register() {
             }}
           />
         </Form>
-        <Modal visible={categoryModalShow}>
+        <Modal testID="modal-category" visible={categoryModalShow}>
           <CategorySelect
             category={category}
             setCategory={setCategory}
