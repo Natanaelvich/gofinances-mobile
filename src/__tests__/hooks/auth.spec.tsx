@@ -63,6 +63,6 @@ describe('Auth hook', () => {
 
     await act(() => result.current.signInWithGoogle());
 
-    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+    expect(result.current.user).not.toHaveProperty('id');
   });
 });
