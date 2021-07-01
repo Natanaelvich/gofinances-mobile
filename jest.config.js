@@ -7,6 +7,7 @@ module.exports = {
     '@testing-library/jest-native/extend-expect',
     'jest-styled-components',
   ],
+  setupFiles: ['./src/__tests__/jestSetup.js'],
   testPathIgnorePatterns: ['/node_modules', '/android', '/ios'],
   collectCoverage: true,
   collectCoverageFrom: [
