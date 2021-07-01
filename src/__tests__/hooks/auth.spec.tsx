@@ -40,6 +40,17 @@ describe('Auth hook', () => {
       JSON.stringify(user),
     );
   });
+  it('should be able make sing out', async () => {
+    const { result, waitForNextUpdate } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
+
+    await waitForNextUpdate();
+    await act(() => result.current.signOut());
+
+    expect(result.current.user).not.toHaveProperty('id');
+    expect(AsyncStorage.removeItem).toHaveBeenCalledWith('@gofinacen:user');
+  });
   it('user should be not connect if cancel authentication with google', async () => {
     const googleMocked = mocked(logInAsync as any);
     googleMocked.mockReturnValue({
