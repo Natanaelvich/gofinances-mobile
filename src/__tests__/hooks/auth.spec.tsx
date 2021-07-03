@@ -18,7 +18,7 @@ describe('Auth hook', () => {
     };
 
     const googleMocked = mocked(logInAsync as any);
-    googleMocked.mockReturnValue({
+    googleMocked.mockReturnValueOnce({
       type: 'success',
       user: {
         id: 'user-123',
@@ -53,7 +53,7 @@ describe('Auth hook', () => {
   });
   it('user should be not connect if cancel authentication with google', async () => {
     const googleMocked = mocked(logInAsync as any);
-    googleMocked.mockReturnValue({
+    googleMocked.mockReturnValueOnce({
       type: 'cancel',
     });
 
